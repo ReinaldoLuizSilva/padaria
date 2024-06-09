@@ -6,14 +6,14 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Entity
-@Table(name = "PEDIDO")
+@Table(name = "pedido")
 public class Pedido {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "DATA_PEDIDO")
+    @Column(name = "data_pedido")
     private LocalDate dataPedido;
 
     public Pedido(LocalDate dataPedido) {
@@ -21,9 +21,9 @@ public class Pedido {
     }
 
     @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "PEDIDO_PRODUTO",
-                joinColumns = @JoinColumn(name="PEDIDO_ID"),
-                inverseJoinColumns = @JoinColumn(name="PRODUTO_ID"))
+    @JoinTable(name = "pedido_produto",
+                joinColumns = @JoinColumn(name="pedido_id"),
+                inverseJoinColumns = @JoinColumn(name="produto_id"))
     private List<Produto> produtos;
 
     @OneToMany(cascade = CascadeType.ALL,
