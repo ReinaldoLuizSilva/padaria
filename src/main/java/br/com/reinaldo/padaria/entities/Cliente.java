@@ -3,24 +3,24 @@ package br.com.reinaldo.padaria.entities;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "CLIENTE")
+@Table(name = "cliente")
 public class Cliente {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "NOME")
+    @Column(name = "nome")
     private String nome;
 
-    @Column(name = "TELEFONE")
+    @Column(name = "telefone")
     private String telefone;
 
-    @Column(name = "ENDERECO")
+    @Column(name = "endereco")
     private String endereco;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "PEDIDO_ID")
+    @JoinColumn(name = "pedido_id")
     private Pedido pedido;
 
     public Cliente() {}
