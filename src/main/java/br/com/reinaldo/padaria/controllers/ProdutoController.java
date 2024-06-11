@@ -27,14 +27,12 @@ public class ProdutoController {
     @GetMapping("/listar")
     public String listar(Model model){
         model.addAttribute("produtos", produtoService.buscarTodosProdutos());
-        return "/produto/produtoListar";
+        return "/produto/produtoList";
     }
 
     @PostMapping("/novo")
     public String novoSalvar(@Valid @ModelAttribute("produto") ProdutoDTO produto, BindingResult bindingResult){
-        if(bindingResult.hasErrors()){
-            return "/produto/produtoForm";
-        }
+        if(bindingResult.hasErrors()) return "/produto/produtoForm";
         produtoService.salvarProduto(produto);
         return "redirect:/produto/listar";
     }

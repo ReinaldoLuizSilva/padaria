@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>Cadastro</h1>
+
+    <form action="#" th:action="@{/cliente/novo}" th:object="${cliente}" method="post">
+        <label>Nome:</label><br/>
+        <span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span><br/>
+        <input type="text" th:field="*{nome}" /><br />
+        <br /><label>Telefone:</label><br />
+        <span th:if="${#fields.hasErrors('telefone')}" th:errors="*{telefone}"></span><br/>
+        <input type="text" th:field="*{telefone}" /><br/>
+        <br /><label>Endereço:</label><br />
+        <span th:if="${#fields.hasErrors('endereco')}" th:errors="*{endereco}"></span><br/>
+        <input type="text" th:field="*{endereco}" /><br/>
+        <input type="submit" value="Salvar" />
+    </form>
+</body>
+</html>
