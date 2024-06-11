@@ -47,4 +47,14 @@ public class Pedido {
     public void setDataPedido(LocalDate dataPedido) {
         this.dataPedido = dataPedido;
     }
+
+    @Override
+    public String toString() {
+        return "Pedido{" +
+                "id=" + id +
+                ", dataPedido=" + dataPedido +
+                ", produtos=" + produtos +
+                ", clientes=" + clientes +
+                '}';
+    }
 }

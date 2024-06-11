@@ -1,8 +1,7 @@
 package br.com.reinaldo.padaria.controllers;
 
 import br.com.reinaldo.padaria.dto.ProdutoDTO;
-import br.com.reinaldo.padaria.entities.Produto;
-import br.com.reinaldo.padaria.repositories.ProdutoRepository;
+import br.com.reinaldo.padaria.services.ProdutoService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ProdutoController {
 
     @Autowired
-    ProdutoRepository produtoRepository;
+    ProdutoService produtoService;
 
     @GetMapping("/novo")
     public String produtoForm(@ModelAttribute("produto") ProdutoDTO produto){
@@ -27,7 +26,7 @@ public class ProdutoController {
 
     @GetMapping("/listar")
     public String listar(Model model){
-        model.addAttribute("produtos", produtoRepository.findAll());
+        model.addAttribute("produtos", produtoService.buscarTodosProdutos());
         return "/produto/produtoListar";
     }
 
@@ -36,12 +35,7 @@ public class ProdutoController {
         if(bindingResult.hasErrors()){
             return "/produto/produtoForm";
         }
-        Produto novoProduto = new Produto();
-        novoProduto.setNome(produto.nome());
-        novoProduto.setPreco(produto.preco());
-        novoProduto.setQuantidade(produto.quantidade());
-        novoProduto.setValidade(produto.validade());
-        produtoRepository.save(novoProduto);
+        produtoService.salvarProduto(produto);
         return "redirect:/produto/listar";
     }
 }
