@@ -9,7 +9,6 @@
         <thead>
             <th>Id</th>
             <th>Nome</th>
-            <th>CPF</th>
             <th>Telefone</th>
             <th>Endereço</th>
             <th>Editar</th>
@@ -19,7 +18,6 @@
             <tr th:each="cliente : ${clientes}">
                 <td th:text="${cliente.id}"></td>
                 <td th:text="${cliente.nome}"></td>
-                <td th:text="${cliente.cpf}"></td>
                 <td th:text="${cliente.telefone}"></td>
                 <td th:text="${cliente.endereco}"></td>
             </tr>

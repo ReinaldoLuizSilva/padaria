@@ -12,15 +12,15 @@ public class ClienteService {
     @Autowired
     ClienteRepository clienteRepository;
 
-    public Iterable<Cliente> buscarTodosClientes() {
-        return clienteRepository.findAll();
-    }
-
     public void salvarCliente(ClienteDTO cliente) {
         Cliente novoCliente = new Cliente();
         novoCliente.setNome(cliente.nome());
         novoCliente.setTelefone(cliente.telefone());
         novoCliente.setEndereco(cliente.endereco());
         clienteRepository.save(novoCliente);
+    }
+
+    public Iterable<Cliente> buscarTodosClientes() {
+        return clienteRepository.findAll();
     }
 }

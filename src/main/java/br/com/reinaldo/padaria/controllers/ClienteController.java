@@ -20,7 +20,7 @@ public class ClienteController {
     ClienteService clienteService;
 
     @GetMapping("/novo")
-    public String clienteForm(@ModelAttribute("cliente")ClienteDTO clienteDTO){return "/cliente/clienteForm";}
+    public String clienteForm(@ModelAttribute("cliente") ClienteDTO cliente){return "/cliente/clienteForm";}
 
     @GetMapping("/listar")
     public String listar(Model model){
@@ -32,6 +32,6 @@ public class ClienteController {
     public String novoSalvar(@Valid @ModelAttribute("cliente") ClienteDTO cliente, BindingResult bindingResult){
         if (bindingResult.hasErrors()) return "/cliente/clienteForm";
         clienteService.salvarCliente(cliente);
-        return "redirect:cliente/listar";
+        return "redirect:/cliente/listar";
     }
 }

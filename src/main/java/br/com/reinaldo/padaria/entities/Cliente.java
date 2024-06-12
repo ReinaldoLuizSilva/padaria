@@ -31,6 +31,7 @@ public class Cliente {
         this.endereco = endereco;
     }
 
+    // Getters and Setters
     public int getId() {
         return id;
     }
@@ -61,6 +62,14 @@ public class Cliente {
 
     public void setEndereco(String endereco) {
         this.endereco = endereco;
+    }
+
+    public Pedido getPedido() {
+        return pedido;
+    }
+
+    public void setPedido(Pedido pedido) {
+        this.pedido = pedido;
     }
 
     @Override
