@@ -38,4 +38,8 @@ public class ProdutoService {
             produtoRepository.save(produto1);
         });
     }
+
+    public void deletar(@PathVariable("id") int id){
+        produtoRepository.deleteById(id);
+    }
 }

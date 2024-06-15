@@ -20,6 +20,8 @@
                 <td th:text="${cliente.nome}"></td>
                 <td th:text="${cliente.telefone}"></td>
                 <td th:text="${cliente.endereco}"></td>
+                <td><a th:href="@{/cliente/editar/{id}(id=${cliente.id})}">Editar</a></td>
+                <td><a th:href="@{/cliente/deletar/{id}(id=${cliente.id})}">Excluir</a></td>
             </tr>
         </tbody>
     </table>

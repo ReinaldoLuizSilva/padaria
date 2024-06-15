@@ -45,4 +45,10 @@ public class ProdutoController {
         produtoService.editarSalvar(produto);
         return "redirect:/produto/listar";
     }
+
+    @GetMapping("/deletar/{id}")
+    public String deletar(@PathVariable("id") int id){
+        produtoService.deletar(id);
+        return "redirect:/produto/listar";
+    }
 }

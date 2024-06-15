@@ -23,6 +23,7 @@
                 <td th:text="${produto.quantidade}"></td>
                 <td th:text="${produto.validade}"></td>
                 <td><a th:href="@{/produto/editar/{id}(id=${produto.id})}">Editar</a></td>
+                <td><a th:href="@{/produto/deletar/{id}(id=${produto.id})}">Excluir</a></td>
             </tr>
         </tbody>
     </table>
