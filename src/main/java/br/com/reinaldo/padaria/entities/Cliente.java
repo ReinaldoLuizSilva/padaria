@@ -2,6 +2,8 @@ package br.com.reinaldo.padaria.entities;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "cliente")
 public class Cliente {
@@ -19,9 +21,8 @@ public class Cliente {
     @Column(name = "endereco")
     private String endereco;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "pedido_id")
-    private Pedido pedido;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cliente")
+    private List<Pedido> pedidos;
 
     public Cliente() {}
 
@@ -64,12 +65,12 @@ public class Cliente {
         this.endereco = endereco;
     }
 
-    public Pedido getPedido() {
-        return pedido;
+    public List<Pedido> getPedidos() {
+        return pedidos;
     }
 
-    public void setPedido(Pedido pedido) {
-        this.pedido = pedido;
+    public void setPedidos(List<Pedido> pedidos) {
+        this.pedidos = pedidos;
     }
 
     @Override
@@ -79,7 +80,7 @@ public class Cliente {
                 ", nome='" + nome + '\'' +
                 ", telefone='" + telefone + '\'' +
                 ", endereco='" + endereco + '\'' +
-                ", pedido=" + pedido +
+                ", pedidos=" + pedidos +
                 '}';
     }
 }

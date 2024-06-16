@@ -16,6 +16,9 @@ public class Pedido {
     @Column(name = "data_pedido")
     private LocalDate dataPedido;
 
+    @Column(name = "total_pedido")
+    private double totalPedido;
+
     public Pedido(LocalDate dataPedido) {
         this.dataPedido = dataPedido;
     }
@@ -26,9 +29,9 @@ public class Pedido {
                 inverseJoinColumns = @JoinColumn(name="produto_id"))
     private List<Produto> produtos;
 
-    @OneToMany(cascade = CascadeType.ALL,
-                mappedBy = "pedido")
-    private List<Cliente> clientes;
+    @ManyToOne
+    @JoinColumn(name = "cliente_id")
+    private Cliente cliente;
 
     public Pedido() {}
 
@@ -48,13 +51,38 @@ public class Pedido {
         this.dataPedido = dataPedido;
     }
 
+    public double getTotalPedido() {
+        return totalPedido;
+    }
+
+    public void setTotalPedido(double totalPedido) {
+        this.totalPedido = totalPedido;
+    }
+
+    public List<Produto> getProdutos() {
+        return produtos;
+    }
+
+    public void setProdutos(List<Produto> produtos) {
+        this.produtos = produtos;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
     @Override
     public String toString() {
         return "Pedido{" +
                 "id=" + id +
                 ", dataPedido=" + dataPedido +
+                ", totalPedido=" + totalPedido +
                 ", produtos=" + produtos +
-                ", clientes=" + clientes +
+                ", cliente=" + cliente +
                 '}';
     }
 }
