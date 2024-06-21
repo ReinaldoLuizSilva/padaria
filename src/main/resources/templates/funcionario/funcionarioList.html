@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html xmlns:th="https://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <title>Title</title>
+    <title>funcionario</title>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -52,27 +52,25 @@
         </ul>
     </div>
 </nav>
+    <h1>funcionario</h1>
+
     <table border="1">
-        <thead>
-            <th>Id</th>
+        <tr>
             <th>Nome</th>
-            <th>Preço</th>
-            <th>Quantidade</th>
-            <th>Validade</th>
+            <th>CPF</th>
+            <th>Salário</th>
+            <th>Departamento</th>
             <th>Editar</th>
             <th>Excluir</th>
-        </thead>
-        <tbody>
-            <tr th:each="produto : ${produtos}">
-                <td th:text="${produto.id}"></td>
-                <td th:text="${produto.nome}"></td>
-                <td th:text="${produto.preco}"></td>
-                <td th:text="${produto.quantidade}"></td>
-                <td th:text="${produto.validade}"></td>
-                <td><a th:href="@{/produto/editar/{id}(id=${produto.id})}">Editar</a></td>
-                <td><a th:href="@{/produto/deletar/{id}(id=${produto.id})}">Excluir</a></td>
-            </tr>
-        </tbody>
+        </tr>
+        <tr th:each="funcionario : ${funcionarios}">
+            <td th:text="${funcionario.nome}"></td>
+            <td th:text="${funcionario.cpf}"></td>
+            <td th:text="${funcionario.salario}"></td>
+            <td th:text="${funcionario.cargo}"></td>
+            <td><a th:href="@{/funcionario/editar/{id}(id=${funcionario.id})}">Editar</a></td>
+            <td><a th:href="@{/funcionario/deletar/{id}(id=${funcionario.id})}">Excluir</a></td>
+        </tr>
     </table>
 </body>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

@@ -52,11 +52,13 @@ public class PedidoController {
         return "/pedido/pedidoEditar";
     }
 
-    @PostMapping("/editar")
-    public String editarSalvar(@ModelAttribute("pedido") PedidoDTO pedidoDTO) {
+    @PostMapping("/editar/{id}")
+    public String editarSalvar(@PathVariable("id") int id, @ModelAttribute("pedido") PedidoDTO pedidoDTO) {
+        pedidoDTO = new PedidoDTO(id, pedidoDTO.totalPedido(), pedidoDTO.dataPedido(), pedidoDTO.idCliente());
         pedidoService.editarSalvar(pedidoDTO);
         return "redirect:/pedido/listar";
     }
+
 
     @GetMapping("/excluir/{id}")
     public String excluirPedido(@PathVariable("id") int id) {

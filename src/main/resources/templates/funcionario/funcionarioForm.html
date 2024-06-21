@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html xmlns:th="https://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <title>Title</title>
+    <title>Funcionario</title>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -52,28 +52,21 @@
         </ul>
     </div>
 </nav>
-    <table border="1">
-        <thead>
-            <th>Id</th>
-            <th>Nome</th>
-            <th>Preço</th>
-            <th>Quantidade</th>
-            <th>Validade</th>
-            <th>Editar</th>
-            <th>Excluir</th>
-        </thead>
-        <tbody>
-            <tr th:each="produto : ${produtos}">
-                <td th:text="${produto.id}"></td>
-                <td th:text="${produto.nome}"></td>
-                <td th:text="${produto.preco}"></td>
-                <td th:text="${produto.quantidade}"></td>
-                <td th:text="${produto.validade}"></td>
-                <td><a th:href="@{/produto/editar/{id}(id=${produto.id})}">Editar</a></td>
-                <td><a th:href="@{/produto/deletar/{id}(id=${produto.id})}">Excluir</a></td>
-            </tr>
-        </tbody>
-    </table>
+    <h1>Funcionario</h1>
+    <form action="#" th:action="@{/funcionario/novo}" th:object="${funcionario}" method="post">
+        <input type="hidden" th:field="*{id}" />
+        <label>Nome:</label>
+        <input type="text" th:field="*{nome}" />
+        <label>CPF:</label>
+        <input type="text" th:field="*{cpf}" />
+        <label>Cargo:</label>
+        <input type="text" th:field="*{cargo}" />
+        <label>Salário:</label>
+        <input type="text" th:field="*{salario}" />
+        <label>Endereço:</label>
+        <input type="text" th:field="*{endereco}" />
+        <button type="submit">Salvar</button>
+    </form>
 </body>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
