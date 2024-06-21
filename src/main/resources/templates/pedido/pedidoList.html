@@ -22,6 +22,8 @@
                 <td th:text="${pedido.cliente.nome}"></td>
                 <td th:text="${pedido.totalPedido}"></td>
                 <td th:text="${pedido.dataPedido}"></td>
+                <td><a th:href="@{/pedido/editar/{id}(id=${pedido.id})}">Editar</a></td>
+                <td><a th:href="@{/pedido/excluir/{id}(id=${pedido.id})}">Excluir</a></td>
             </tr>
         </tbody>
     </table>

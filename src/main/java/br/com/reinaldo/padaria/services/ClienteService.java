@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
+import java.util.Optional;
+
 @Service
 public class ClienteService {
 
@@ -41,4 +43,9 @@ public class ClienteService {
     public void deletar(int id) {
         clienteRepository.deleteById(id);
     }
+
+    public Optional<Cliente> buscarClientePorId(int id) {
+        return clienteRepository.findById(id);
+    }
+
 }
