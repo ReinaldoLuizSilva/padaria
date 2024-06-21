@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>Lista de Pedidos</h1>
+
+    <table border="1">
+        <thead>
+            <th>Id</th>
+            <th>Cliente</th>
+            <th>Valor</th>
+            <th>Data</th>
+            <th>Editar</th>
+            <th>Excluir</th>
+        </thead>
+        <tbody>
+            <tr th:each="pedido : ${pedidos}">
+                <td th:text="${pedido.id}"></td>
+                <td th:text="${pedido.cliente.nome}"></td>
+                <td th:text="${pedido.totalPedido}"></td>
+                <td th:text="${pedido.dataPedido}"></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
