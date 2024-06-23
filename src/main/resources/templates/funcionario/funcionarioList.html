@@ -7,7 +7,7 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Navbar</a>
+    <a class="navbar-brand" href="/">Padaria</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Alterna navegação">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -33,7 +33,7 @@
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    pedido
+                    Pedido
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item" href="/pedido/novo">Novo</a>
@@ -52,26 +52,35 @@
         </ul>
     </div>
 </nav>
-    <h1>funcionario</h1>
-
-    <table border="1">
-        <tr>
-            <th>Nome</th>
-            <th>CPF</th>
-            <th>Salário</th>
-            <th>Departamento</th>
-            <th>Editar</th>
-            <th>Excluir</th>
-        </tr>
-        <tr th:each="funcionario : ${funcionarios}">
-            <td th:text="${funcionario.nome}"></td>
-            <td th:text="${funcionario.cpf}"></td>
-            <td th:text="${funcionario.salario}"></td>
-            <td th:text="${funcionario.cargo}"></td>
-            <td><a th:href="@{/funcionario/editar/{id}(id=${funcionario.id})}">Editar</a></td>
-            <td><a th:href="@{/funcionario/deletar/{id}(id=${funcionario.id})}">Excluir</a></td>
-        </tr>
-    </table>
+    <h1 class="text-center">Lista de Funcionarios</h1>
+    <div class="container">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">CPF</th>
+                    <th scope="col">Cargo</th>
+                    <th scope="col">Salário</th>
+                    <th scope="col">Endereço</th>
+                    <th scope="col">Editar</th>
+                    <th scope="col">Excluir</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="funcionario : ${funcionarios}">
+                    <td th:text="${funcionario.id}"></td>
+                    <td th:text="${funcionario.nome}"></td>
+                    <td th:text="${funcionario.cpf}"></td>
+                    <td th:text="${funcionario.cargo}"></td>
+                    <td th:text="${funcionario.salario}"></td>
+                    <td th:text="${funcionario.endereco}"></td>
+                    <td><a th:href="@{/funcionario/editar/{id}(id=${funcionario.id})}">Editar</a></td>
+                    <td><a th:href="@{/funcionario/deletar/{id}(id=${funcionario.id})}">Excluir</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>

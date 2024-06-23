@@ -6,69 +6,80 @@
     <title>cadastro produto</title>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Alterna navegação">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav">
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Funcionario
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="/funcionario/novo">Novo</a>
-                    <a class="dropdown-item" href="/funcionario/listar">Lista</a>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/">Padaria</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Alterna navegação">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Funcionario
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="/funcionario/novo">Novo</a>
+                        <a class="dropdown-item" href="/funcionario/listar">Lista</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Cliente
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="/cliente/novo">Novo</a>
+                        <a class="dropdown-item" href="/cliente/listar">Lista</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Pedido
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="/pedido/novo">Novo</a>
+                        <a class="dropdown-item" href="/pedido/listar">Lista</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink4" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Produto
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="/produto/novo">Novo</a>
+                        <a class="dropdown-item" href="/produto/listar">Lista</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <h1 class="text-center">Cadastro de Produto</h1>
+    <div class="container">
+        <form  action="#" th:action="@{/produto/novo}" th:object="${produto}" method="post">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label>Nome</label>
+                    <span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span><br/>
+                    <input type="text" class="form-control" th:field="*{nome}" placeholder="Nome">
                 </div>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Cliente
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="/cliente/novo">Novo</a>
-                    <a class="dropdown-item" href="/cliente/listar">Lista</a>
+                <div class="form-group col-md-6">
+                    <label>Preço</label>
+                    <span th:if="${#fields.hasErrors('preco')}" th:errors="*{preco}"></span><br/>
+                    <input type="text" class="form-control" th:field="*{preco}" placeholder="Preço">
                 </div>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    pedido
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="/pedido/novo">Novo</a>
-                    <a class="dropdown-item" href="/pedido/listar">Lista</a>
-                </div>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink4" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Produto
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="/produto/novo">Novo</a>
-                    <a class="dropdown-item" href="/produto/listar">Lista</a>
-                </div>
-            </li>
-        </ul>
+            </div>
+            <div class="form-group">
+                <label>Quantidade</label>
+                <span th:if="${#fields.hasErrors('quantidade')}" th:errors="*{quantidade}"></span><br/>
+                <input type="text" class="form-control" th:field="*{quantidade}" placeholder="Quandidade">
+            </div>
+            <div class="form-group">
+                <label>Validade</label>
+                <span th:if="${#fields.hasErrors('validade')}" th:errors="*{validade}"></span><br/>
+                <input type="date" class="form-control" th:field="*{validade}">
+            </div>
+            <button type="submit" class="btn btn-primary">Entrar</button>
+        </form>
     </div>
-</nav>
-    <h1>Cadastro</h1>
-
-    <form action="#" th:action="@{/produto/novo}" th:object="${produto}" method="post">
-        <label>Nome:</label><br/>
-        <span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span><br/>
-        <input type="text" th:field="*{nome}" /><br />
-        <br /><label>Preço</label><br/>
-        <span th:if="${#fields.hasErrors('preco')}" th:errors="*{preco}"></span><br/>
-        <input type="number" th:field="*{preco}"/><br/>
-        <br /><label>Quantidade:</label><br />
-        <span th:if="${#fields.hasErrors('quantidade')}" th:errors="*{quantidade}"></span><br/>
-        <input type="number" th:field="*{quantidade}" /><br/>
-        <br /><label>Validade:</label><br />
-        <span th:if="${#fields.hasErrors('validade')}" th:errors="*{validade}"></span><br/>
-        <input type="date" th:field="*{validade}" /><br/>
-        <input type="submit" value="Salvar" />
-    </form>
 </body>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>

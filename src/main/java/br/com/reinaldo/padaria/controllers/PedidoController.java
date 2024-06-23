@@ -3,17 +3,12 @@ package br.com.reinaldo.padaria.controllers;
 import br.com.reinaldo.padaria.dto.ClienteDTO;
 import br.com.reinaldo.padaria.dto.PedidoDTO;
 import br.com.reinaldo.padaria.entities.Cliente;
-import br.com.reinaldo.padaria.entities.Pedido;
 import br.com.reinaldo.padaria.services.ClienteService;
 import br.com.reinaldo.padaria.services.PedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 
 @Controller
 @RequestMapping("/pedido")
@@ -27,7 +22,7 @@ public class PedidoController {
     @GetMapping("/novo")
     public String pedidoForm(@ModelAttribute("pedido") PedidoDTO pedido, Model model) {
         Iterable<Cliente> clientes = clienteService.buscarTodosClientes();
-        model.addAttribute("clientes", clientes); // Note que aqui é "clientes"
+        model.addAttribute("clientes", clientes);
         return "/pedido/pedidoForm";
     }
 
@@ -49,7 +44,7 @@ public class PedidoController {
         model.addAttribute("pedido", pedidoDTO);
         Iterable<Cliente> clientes = clienteService.buscarTodosClientes();
         model.addAttribute("clientes", clientes);
-        return "/pedido/pedidoEditar";
+        return "pedido/pedidoEditar";
     }
 
     @PostMapping("/editar/{id}")
@@ -58,7 +53,6 @@ public class PedidoController {
         pedidoService.editarSalvar(pedidoDTO);
         return "redirect:/pedido/listar";
     }
-
 
     @GetMapping("/excluir/{id}")
     public String excluirPedido(@PathVariable("id") int id) {

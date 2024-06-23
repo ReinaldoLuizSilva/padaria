@@ -7,7 +7,7 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Navbar</a>
+        <a class="navbar-brand" href="/">Padaria</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Alterna navegação">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -33,7 +33,7 @@
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        pedido
+                        Pedido
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" href="/pedido/novo">Novo</a>
@@ -52,19 +52,26 @@
             </ul>
         </div>
     </nav>
-    <h1>Cadastro</h1>
-
-    <form action="#" th:action="@{/cliente/novo}" th:object="${cliente}" method="post">
-        <label>Nome:</label><br/>
-        <span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span><br/>
-        <input type="text" th:field="*{nome}" /><br />
-        <br /><label>Telefone:</label><br />
-        <span th:if="${#fields.hasErrors('telefone')}" th:errors="*{telefone}"></span><br/>
-        <input type="text" th:field="*{telefone}" /><br/>
-        <br /><label>Endereço:</label><br />
-        <span th:if="${#fields.hasErrors('endereco')}" th:errors="*{endereco}"></span><br/>
-        <input type="text" th:field="*{endereco}" /><br/>
-        <input type="submit" value="Salvar" />
+    <h1 class="text-center">Cadastro de clientes</h1>
+    <form class="container" action="#" th:action="@{/cliente/novo}" th:object="${cliente}" method="post">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label>Nome</label>
+                <span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
+                <input type="text" class="form-control" th:field="*{nome}" placeholder="nome">
+            </div>
+            <div class="form-group col-md-6">
+                <label>Telefone</label>
+                <span th:if="${#fields.hasErrors('telefone')}" th:errors="*{telefone}"></span>
+                <input type="text" class="form-control" th:field="*{telefone}" placeholder="Telefone">
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Endereço</label>
+            <span th:if="${#fields.hasErrors('endereco')}" th:errors="*{endereco}"></span>
+            <input type="text" class="form-control" th:field="*{endereco}" placeholder="Endereço">
+        </div>
+        <button type="submit" class="btn btn-primary">Salvar</button>
     </form>
 </body>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

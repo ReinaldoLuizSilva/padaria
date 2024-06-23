@@ -6,64 +6,70 @@
     <title>Title</title>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Alterna navegação">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav">
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Funcionario
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="/funcionario/novo">Novo</a>
-                    <a class="dropdown-item" href="/funcionario/listar">Lista</a>
-                </div>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Cliente
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="/cliente/novo">Novo</a>
-                    <a class="dropdown-item" href="/cliente/listar">Lista</a>
-                </div>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    pedido
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="/pedido/novo">Novo</a>
-                    <a class="dropdown-item" href="/pedido/listar">Lista</a>
-                </div>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink4" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Produto
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="/produto/novo">Novo</a>
-                    <a class="dropdown-item" href="/produto/listar">Lista</a>
-                </div>
-            </li>
-        </ul>
-    </div>
-</nav>
-
-    <h1>Cliente</h1>
-
-    <form action="/cliente/editar" method="post">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/">Padaria</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Alterna navegação">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Funcionario
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="/funcionario/novo">Novo</a>
+                        <a class="dropdown-item" href="/funcionario/listar">Lista</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Cliente
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="/cliente/novo">Novo</a>
+                        <a class="dropdown-item" href="/cliente/listar">Lista</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Pedido
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="/pedido/novo">Novo</a>
+                        <a class="dropdown-item" href="/pedido/listar">Lista</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink4" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Produto
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="/produto/novo">Novo</a>
+                        <a class="dropdown-item" href="/produto/listar">Lista</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <h1 class="text-center">Editar Cliente</h1>
+    <form class="container" action="/cliente/editar" method="post">
         <input type="hidden" name="id" th:value="${cliente.id}" />
-        <label>Nome:</label><br/>
-        <input type="text" name="nome" th:value="${cliente.nome}" /><br />
-        <label>Endereço</label><br/>
-        <input type="text" name="endereco" th:value="${cliente.endereco}"/><br/>
-        <label>Telefone:</label><br />
-        <input type="text" name="telefone" th:value="${cliente.telefone}" /><br/>
-        <input type="submit" value="Salvar" />
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label>Nome</label>
+                <input type="text" class="form-control" name="nome" th:value="${cliente.nome}">
+            </div>
+            <div class="form-group col-md-6">
+                <label>Telefone</label>
+                <input type="text" class="form-control" name="telefone" th:value="${cliente.telefone}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Endereço</label>
+            <input type="text" class="form-control" name="endereco" th:value="${cliente.endereco}">
+        </div>
+        <button type="submit" class="btn btn-primary">Salvar</button>
     </form>
 </body>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

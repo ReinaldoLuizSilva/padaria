@@ -7,7 +7,7 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Navbar</a>
+    <a class="navbar-brand" href="/">Padaria</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Alterna navegação">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -26,16 +26,16 @@
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Cliente
                 </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink2">
                     <a class="dropdown-item" href="/cliente/novo">Novo</a>
                     <a class="dropdown-item" href="/cliente/listar">Lista</a>
                 </div>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    pedido
+                    Pedido
                 </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink3">
                     <a class="dropdown-item" href="/pedido/novo">Novo</a>
                     <a class="dropdown-item" href="/pedido/listar">Lista</a>
                 </div>
@@ -44,7 +44,7 @@
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink4" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Produto
                 </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink4">
                     <a class="dropdown-item" href="/produto/novo">Novo</a>
                     <a class="dropdown-item" href="/produto/listar">Lista</a>
                 </div>
@@ -52,23 +52,29 @@
         </ul>
     </div>
 </nav>
-<h1>Editar Pedido</h1>
-
-<form action="#" th:action="@{/pedido/editar/{id}(id=${pedido.id})}" th:object="${pedido}" method="post">
-    <input type="hidden" th:field="*{id}"/>
-    <label>Cliente: </label>
-    <select th:field="*{idCliente}">
-        <option th:each="cliente : ${clientes}" th:value="${cliente.id}" th:text="${cliente.nome}"></option>
-    </select>
-    <br>
-    <label>Valor: </label>
-    <input type="text" th:field="*{totalPedido}"/>
-    <br>
-    <label>Data: </label>
-    <input type="date" th:field="*{dataPedido}"/>
-    <br>
-    <button type="submit">Salvar</button>
-</form>
+<h1 class="text-center">Editar Pedido</h1>
+<div class="container">
+    <form th:action="@{'/pedido/editar/' + ${pedido.id}}" method="post">
+        <input type="hidden" name="id" th:value="${pedido.id}" />
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label>Total Pedido</label>
+                <input type="text" class="form-control" name="totalPedido" th:value="${pedido.totalPedido}" placeholder="Total Pedido">
+            </div>
+            <div class="form-group col-md-6">
+                <label>Data Pedido</label>
+                <input type="date" class="form-control" name="dataPedido" th:value="${pedido.dataPedido}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Cliente</label>
+            <select class="form-control" name="idCliente">
+                <option th:each="cliente : ${clientes}" th:value="${cliente.id}" th:text="${cliente.nome}"></option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Salvar</button>
+    </form>
+</div>
 </body>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
