@@ -8,7 +8,6 @@ import br.com.reinaldo.padaria.repositories.ProdutoRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
 
 import java.util.List;
 import java.util.Optional;
@@ -47,13 +46,24 @@ public class PedidoService {
             pedido.setTotalPedido(pedidoDTO.totalPedido());
             pedido.setDataPedido(pedidoDTO.dataPedido());
             clienteService.buscarClientePorId(pedidoDTO.idCliente()).ifPresent(pedido::setCliente);
-            pedidoRepository.save(pedido);
-        } else throw new EntityNotFoundException("Pedido não encontrado com o ID: " + pedidoDTO.id());
 
+            List<Produto> produtos = (List<Produto>) produtoRepository.findAllById(pedidoDTO.idProdutos());
+            pedido.setProdutos(produtos);
+
+            pedidoRepository.save(pedido);
+        } else {
+            throw new EntityNotFoundException("Pedido não encontrado com o ID: " + pedidoDTO.id());
+        }
     }
 
-    public Pedido buscarPedidoPorId(int id) {
+    public Pedido buscarPedidoDetalhe(int id) {
         return pedidoRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Pedido não encontrado com o ID: " + id));
+    }
+
+    public PedidoDTO buscarPedidoPorId(int id){
+        Pedido pedido = pedidoRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Pedido não encontrado com o ID: " + id));
+        List<Integer> idProdutos = pedido.getProdutos().stream().map(Produto::getId).toList();
+        return new PedidoDTO(pedido.getId(), pedido.getTotalPedido(), pedido.getDataPedido(), pedido.getCliente().getId(), idProdutos);
     }
 
     public void excluirPedido(int id) {

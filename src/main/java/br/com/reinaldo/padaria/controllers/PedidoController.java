@@ -45,21 +45,23 @@ public class PedidoController {
         return "redirect:/pedido/listar";
     }
 
-//    @GetMapping("/editar/{id}")
-//    public String editarForm(@PathVariable("id") int id, Model model) {
-//        PedidoDTO pedidoDTO = pedidoService.buscarPedidoPorId(id);
-//        model.addAttribute("pedido", pedidoDTO);
-//        Iterable<Cliente> clientes = clienteService.buscarTodosClientes();
-//        model.addAttribute("clientes", clientes);
-//        return "pedido/pedidoEditar";
-//    }
+    @GetMapping("/editar/{id}")
+    public String editarForm(@PathVariable("id") int id, Model model) {
+        PedidoDTO pedidoDTO = pedidoService.buscarPedidoPorId(id);
+        model.addAttribute("pedido", pedidoDTO);
+        Iterable<Cliente> clientes = clienteService.buscarTodosClientes();
+        Iterable<Produto> produtos = produtoService.buscarTodosProdutos();
+        model.addAttribute("clientes", clientes);
+        model.addAttribute("produtos", produtos);
+        return "pedido/pedidoEditar";
+    }
 
-//    @PostMapping("/editar/{id}")
-//    public String editarSalvar(@PathVariable("id") int id, @ModelAttribute("pedido") PedidoDTO pedidoDTO) {
-//        pedidoDTO = new PedidoDTO(id, pedidoDTO.totalPedido(), pedidoDTO.dataPedido(), pedidoDTO.idCliente());
-//        pedidoService.editarSalvar(pedidoDTO);
-//        return "redirect:/pedido/listar";
-//    }
+    @PostMapping("/editar/{id}")
+    public String editarSalvar(@PathVariable("id") int id, @ModelAttribute("pedido") PedidoDTO pedidoDTO) {
+        pedidoDTO = new PedidoDTO(id, pedidoDTO.totalPedido(), pedidoDTO.dataPedido(), pedidoDTO.idCliente(), pedidoDTO.idProdutos());
+        pedidoService.editarSalvar(pedidoDTO);
+        return "redirect:/pedido/listar";
+    }
 
     @GetMapping("/excluir/{id}")
     public String excluirPedido(@PathVariable("id") int id) {
@@ -69,7 +71,7 @@ public class PedidoController {
 
     @GetMapping("/detalhes/{id}")
     public String detalhesPedido(@PathVariable("id") int id, Model model) {
-        Pedido pedido = pedidoService.buscarPedidoPorId(id);
+        Pedido pedido = pedidoService.buscarPedidoDetalhe(id);
         model.addAttribute("pedido", pedido);
         return "/pedido/pedidoDetalhes";
     }

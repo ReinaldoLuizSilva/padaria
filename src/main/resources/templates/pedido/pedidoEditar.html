@@ -54,25 +54,33 @@
 </nav>
 <h1 class="text-center">Editar Pedido</h1>
 <div class="container">
-    <form th:action="@{'/pedido/editar/' + ${pedido.id}}" method="post">
-        <input type="hidden" name="id" th:value="${pedido.id}" />
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label>Total Pedido</label>
-                <input type="text" class="form-control" name="totalPedido" th:value="${pedido.totalPedido}" placeholder="Total Pedido">
-            </div>
-            <div class="form-group col-md-6">
-                <label>Data Pedido</label>
-                <input type="date" class="form-control" name="dataPedido" th:value="${pedido.dataPedido}">
-            </div>
+    <form th:action="@{/pedido/editar/{id}(id=${pedido.id})}" th:object="${pedido}" method="post">
+        <div>
+            <label>Data do Pedido:</label>
+            <input type="text" th:field="*{dataPedido}" />
         </div>
-        <div class="form-group">
-            <label>Cliente</label>
-            <select class="form-control" name="idCliente">
+        <div>
+            <label>Total do Pedido:</label>
+            <input type="text" th:field="*{totalPedido}" />
+        </div>
+        <div>
+            <label>Cliente:</label>
+            <select th:field="*{idCliente}">
                 <option th:each="cliente : ${clientes}" th:value="${cliente.id}" th:text="${cliente.nome}"></option>
             </select>
         </div>
-        <button type="submit" class="btn btn-primary">Salvar</button>
+        <div class="form-group">
+            <label>Produtos</label>
+            <div th:each="produto : ${produtos}">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" th:field="*{idProdutos}" th:value="${produto.id}">
+                    <label class="form-check-label" th:text="${produto.nome}"></label>
+                </div>
+            </div>
+        </div>
+        <div>
+            <button type="submit">Salvar</button>
+        </div>
     </form>
 </div>
 </body>

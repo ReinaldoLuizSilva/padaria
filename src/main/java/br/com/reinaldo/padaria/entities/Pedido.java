@@ -1,7 +1,6 @@
 package br.com.reinaldo.padaria.entities;
 
 import jakarta.persistence.*;
-
 import java.time.LocalDate;
 import java.util.List;
 
@@ -23,10 +22,10 @@ public class Pedido {
         this.dataPedido = dataPedido;
     }
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany
     @JoinTable(name = "pedido_produto",
-                joinColumns = @JoinColumn(name="pedido_id"),
-                inverseJoinColumns = @JoinColumn(name="produto_id"))
+            joinColumns = @JoinColumn(name = "pedido_id"),
+            inverseJoinColumns = @JoinColumn(name = "produto_id"))
     private List<Produto> produtos;
 
     @ManyToOne
