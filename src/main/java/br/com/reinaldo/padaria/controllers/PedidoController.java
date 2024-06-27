@@ -3,8 +3,10 @@ package br.com.reinaldo.padaria.controllers;
 import br.com.reinaldo.padaria.dto.ClienteDTO;
 import br.com.reinaldo.padaria.dto.PedidoDTO;
 import br.com.reinaldo.padaria.entities.Cliente;
+import br.com.reinaldo.padaria.entities.Produto;
 import br.com.reinaldo.padaria.services.ClienteService;
 import br.com.reinaldo.padaria.services.PedidoService;
+import br.com.reinaldo.padaria.services.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,11 +20,15 @@ public class PedidoController {
     PedidoService pedidoService;
     @Autowired
     ClienteService clienteService;
+    @Autowired
+    ProdutoService produtoService;
 
     @GetMapping("/novo")
     public String pedidoForm(@ModelAttribute("pedido") PedidoDTO pedido, Model model) {
         Iterable<Cliente> clientes = clienteService.buscarTodosClientes();
+        Iterable<Produto> produtos = produtoService.buscarTodosProdutos(); // Adicione esta linha
         model.addAttribute("clientes", clientes);
+        model.addAttribute("produtos", produtos); // Adicione esta linha
         return "/pedido/pedidoForm";
     }
 
@@ -38,21 +44,21 @@ public class PedidoController {
         return "redirect:/pedido/listar";
     }
 
-    @GetMapping("/editar/{id}")
-    public String editarForm(@PathVariable("id") int id, Model model) {
-        PedidoDTO pedidoDTO = pedidoService.buscarPedidoPorId(id);
-        model.addAttribute("pedido", pedidoDTO);
-        Iterable<Cliente> clientes = clienteService.buscarTodosClientes();
-        model.addAttribute("clientes", clientes);
-        return "pedido/pedidoEditar";
-    }
+//    @GetMapping("/editar/{id}")
+//    public String editarForm(@PathVariable("id") int id, Model model) {
+//        PedidoDTO pedidoDTO = pedidoService.buscarPedidoPorId(id);
+//        model.addAttribute("pedido", pedidoDTO);
+//        Iterable<Cliente> clientes = clienteService.buscarTodosClientes();
+//        model.addAttribute("clientes", clientes);
+//        return "pedido/pedidoEditar";
+//    }
 
-    @PostMapping("/editar/{id}")
-    public String editarSalvar(@PathVariable("id") int id, @ModelAttribute("pedido") PedidoDTO pedidoDTO) {
-        pedidoDTO = new PedidoDTO(id, pedidoDTO.totalPedido(), pedidoDTO.dataPedido(), pedidoDTO.idCliente());
-        pedidoService.editarSalvar(pedidoDTO);
-        return "redirect:/pedido/listar";
-    }
+//    @PostMapping("/editar/{id}")
+//    public String editarSalvar(@PathVariable("id") int id, @ModelAttribute("pedido") PedidoDTO pedidoDTO) {
+//        pedidoDTO = new PedidoDTO(id, pedidoDTO.totalPedido(), pedidoDTO.dataPedido(), pedidoDTO.idCliente());
+//        pedidoService.editarSalvar(pedidoDTO);
+//        return "redirect:/pedido/listar";
+//    }
 
     @GetMapping("/excluir/{id}")
     public String excluirPedido(@PathVariable("id") int id) {
