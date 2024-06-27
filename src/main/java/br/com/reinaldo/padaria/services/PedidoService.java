@@ -52,11 +52,9 @@ public class PedidoService {
 
     }
 
-//    public PedidoDTO buscarPedidoPorId(int id){
-//        Pedido pedido = pedidoRepository.findById(id).get();
-//        PedidoDTO pedidoDTO = new PedidoDTO(pedido.getId(), pedido.getTotalPedido(), pedido.getDataPedido(), pedido.getCliente().getId());
-//        return pedidoDTO;
-//    }
+    public Pedido buscarPedidoPorId(int id) {
+        return pedidoRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Pedido não encontrado com o ID: " + id));
+    }
 
     public void excluirPedido(int id) {
         pedidoRepository.deleteById(id);

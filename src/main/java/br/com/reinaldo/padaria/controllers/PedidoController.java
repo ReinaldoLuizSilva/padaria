@@ -3,6 +3,7 @@ package br.com.reinaldo.padaria.controllers;
 import br.com.reinaldo.padaria.dto.ClienteDTO;
 import br.com.reinaldo.padaria.dto.PedidoDTO;
 import br.com.reinaldo.padaria.entities.Cliente;
+import br.com.reinaldo.padaria.entities.Pedido;
 import br.com.reinaldo.padaria.entities.Produto;
 import br.com.reinaldo.padaria.services.ClienteService;
 import br.com.reinaldo.padaria.services.PedidoService;
@@ -65,4 +66,12 @@ public class PedidoController {
         pedidoService.excluirPedido(id);
         return "redirect:/pedido/listar";
     }
+
+    @GetMapping("/detalhes/{id}")
+    public String detalhesPedido(@PathVariable("id") int id, Model model) {
+        Pedido pedido = pedidoService.buscarPedidoPorId(id);
+        model.addAttribute("pedido", pedido);
+        return "/pedido/pedidoDetalhes";
+    }
+
 }
