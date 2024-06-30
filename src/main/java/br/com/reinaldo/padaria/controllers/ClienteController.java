@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/cliente")
@@ -39,8 +40,18 @@ public class ClienteController {
     }
 
     @PostMapping("/editar")
-    public String editarSalvar(ClienteDTO cliente){
+    public String editarSalvar(@Valid @ModelAttribute("cliente") ClienteDTO cliente,
+                               BindingResult bindingResult,
+                               Model model,
+                               RedirectAttributes redirectAttributes) {
+
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("cliente", cliente);
+            return "cliente/clienteEditar";
+        }
         clienteService.editarSalvar(cliente);
+        redirectAttributes.addFlashAttribute("mensagem", "Cliente editado com sucesso!");
+
         return "redirect:/cliente/listar";
     }
 

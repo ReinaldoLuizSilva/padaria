@@ -52,36 +52,41 @@
         </ul>
     </div>
 </nav>
-    <h1 class="text-center">Funcionario</h1>
-    <div class="container">
-        <form  action="#" th:action="@{/funcionario/novo}" th:object="${funcionario}" method="post">
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label>Nome</label>
-                    <input type="text" class="form-control" th:field="*{nome}" placeholder="Nome">
-                </div>
-                <div class="form-group col-md-6">
-                    <label>CPF</label>
-                    <input type="text" class="form-control" th:field="*{cpf}" placeholder="CPF">
-                </div>
+<h1 class="text-center">Funcionario</h1>
+<div class="container">
+    <form action="#" th:action="@{/funcionario/novo}" th:object="${funcionario}" method="post">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label>Nome</label>
+                <input type="text" class="form-control" th:field="*{nome}" placeholder="Nome">
+                <span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label>Endereço</label>
-                <input type="text" class="form-control" th:field="*{endereco}" placeholder="Endereço">
+            <div class="form-group col-md-6">
+                <label>CPF</label>
+                <input type="text" class="form-control" th:field="*{cpf}" placeholder="CPF">
+                <span th:if="${#fields.hasErrors('cpf')}" th:errors="*{cpf}" class="text-danger"></span>
             </div>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label>Cargo</label>
-                    <input type="text" class="form-control" th:field="*{cargo}" placeholder="Cargo">
-                </div>
-                <div class="form-group col-md-6">
-                    <label>Salario</label>
-                    <input type="text" class="form-control" th:field="*{salario}" placeholder="Salario">
-                </div>
+        </div>
+        <div class="form-group">
+            <label>Endereço</label>
+            <input type="text" class="form-control" th:field="*{endereco}" placeholder="Endereço">
+            <span th:if="${#fields.hasErrors('endereco')}" th:errors="*{endereco}" class="text-danger"></span>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label>Cargo</label>
+                <input type="text" class="form-control" th:field="*{cargo}" placeholder="Cargo">
+                <span th:if="${#fields.hasErrors('cargo')}" th:errors="*{cargo}" class="text-danger"></span>
             </div>
-            <button type="submit" class="btn btn-primary">Salvar</button>
-        </form>
-    </div>
+            <div class="form-group col-md-6">
+                <label>Salario</label>
+                <input type="text" class="form-control" th:field="*{salario}" placeholder="Salario">
+                <span th:if="${#fields.hasErrors('salario')}" th:errors="*{salario}" class="text-danger"></span>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Salvar</button>
+    </form>
+</div>
 </body>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>

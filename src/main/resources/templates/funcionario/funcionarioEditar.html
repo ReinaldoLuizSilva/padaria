@@ -3,86 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <title>funcionario</title>
+    <title>Editar Funcionario</title>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="/">Padaria</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Alterna navegação">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Funcionario
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="/funcionario/novo">Novo</a>
-                        <a class="dropdown-item" href="/funcionario/listar">Lista</a>
-                    </div>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Cliente
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="/cliente/novo">Novo</a>
-                        <a class="dropdown-item" href="/cliente/listar">Lista</a>
-                    </div>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Pedido
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="/pedido/novo">Novo</a>
-                        <a class="dropdown-item" href="/pedido/listar">Lista</a>
-                    </div>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink4" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Produto
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="/produto/novo">Novo</a>
-                        <a class="dropdown-item" href="/produto/listar">Lista</a>
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </nav>
-    <h1 class="text-center">Editar Funcionario</h1>
-    <div class="container">
-        <form  action="/funcionario/editar"  method="post">
-            <input type="hidden" name="id" th:value="${funcionario.id}" />
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label>Nome</label>
-                    <input type="text" class="form-control" name="nome" th:value="${funcionario.nome}" placeholder="Nome">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="/">Padaria</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Alterna navegação">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Funcionario
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="/funcionario/novo">Novo</a>
+                    <a class="dropdown-item" href="/funcionario/listar">Lista</a>
                 </div>
-                <div class="form-group col-md-6">
-                    <label>CPF</label>
-                    <input type="text" class="form-control" name="cpf" th:value="${funcionario.cpf}" placeholder="CPF">
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Cliente
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="/cliente/novo">Novo</a>
+                    <a class="dropdown-item" href="/cliente/listar">Lista</a>
                 </div>
-            </div>
-            <div class="form-group">
-                <label>Endereço</label>
-                <input type="text" class="form-control" name="endereco" th:value="${funcionario.endereco}" placeholder="Endereço">
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label>Cargo</label>
-                    <input type="text" class="form-control" name="cargo" th:value="${funcionario.cargo}" placeholder="Cargo">
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Pedido
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="/pedido/novo">Novo</a>
+                    <a class="dropdown-item" href="/pedido/listar">Lista</a>
                 </div>
-                <div class="form-group col-md-6">
-                    <label>Salario</label>
-                    <input type="text" class="form-control" name="salario" th:value="${funcionario.salario}" placeholder="Salario">
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink4" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Produto
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="/produto/novo">Novo</a>
+                    <a class="dropdown-item" href="/produto/listar">Lista</a>
                 </div>
-            </div>
-            <button type="submit" class="btn btn-primary">Salvar</button>
-        </form>
+            </li>
+        </ul>
     </div>
+</nav>
+<h1 class="text-center">Editar Funcionario</h1>
+<div class="container">
+    <form action="/funcionario/editar" th:action="@{/funcionario/editar}" th:object="${funcionario}" method="post">
+        <input type="hidden" th:field="*{id}" />
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label>Nome</label>
+                <input type="text" class="form-control" th:field="*{nome}" placeholder="Nome">
+                <span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-6">
+                <label>CPF</label>
+                <input type="text" class="form-control" th:field="*{cpf}" placeholder="CPF">
+                <span th:if="${#fields.hasErrors('cpf')}" th:errors="*{cpf}" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Endereço</label>
+            <input type="text" class="form-control" th:field="*{endereco}" placeholder="Endereço">
+            <span th:if="${#fields.hasErrors('endereco')}" th:errors="*{endereco}" class="text-danger"></span>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label>Cargo</label>
+                <input type="text" class="form-control" th:field="*{cargo}" placeholder="Cargo">
+                <span th:if="${#fields.hasErrors('cargo')}" th:errors="*{cargo}" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-6">
+                <label>Salário</label>
+                <input type="text" class="form-control" th:field="*{salario}" placeholder="Salário">
+                <span th:if="${#fields.hasErrors('salario')}" th:errors="*{salario}" class="text-danger"></span>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Salvar</button>
+    </form>
+</div>
 </body>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
