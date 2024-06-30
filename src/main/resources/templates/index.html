@@ -62,6 +62,7 @@
             <div class="col-md-3">
                 <a href="/cliente/novo" class="btn btn-primary">Cliente Novo</a>
                 <p class="mt-2"><a href="/cliente/listar" class="btn btn-primary">Lista de Clientes</a></p>
+                <p class="mt-2"><a href="/cliente/telefone" class="btn btn-primary">Busca por telefone Cliente</a></p>
             </div>
             <div class="col-md-3">
                 <a href="/pedido/novo" class="btn btn-primary">Pedido Novo</a>
@@ -70,8 +71,12 @@
             <div class="col-md-3">
                 <a href="/produto/novo" class="btn btn-primary">Produto Novo</a>
                 <p class="mt-2"><a href="/produto/listar" class="btn btn-primary">Lista de Produtos</a></p>
+                <p class="mt-2"><a href="/produto/nome" class="btn btn-primary">Busca por nome Produto</a></p>
             </div>
         </div>
+        <form class="text-center" th:action="@{/logout}" method="post">
+            <input class="btn-lg btn-primary" type="submit" value="Sair"/>
+        </form>
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
