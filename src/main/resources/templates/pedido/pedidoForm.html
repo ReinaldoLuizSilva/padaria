@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <title>Novo Pedido</title>
+    <title>Formulario do Pedido</title>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -47,6 +47,7 @@
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item" href="/produto/novo">Novo</a>
                     <a class="dropdown-item" href="/produto/listar">Lista</a>
+                    <a class="dropdown-item" href="/produto/nome">Nome</a>
                 </div>
             </li>
         </ul>
@@ -59,16 +60,20 @@
             <div class="form-group col-md-4">
                 <label>Cliente</label>
                 <select th:field="*{idCliente}" class="form-control">
-                    <option selected th:each="cliente : ${clientes}" th:value="${cliente.id}" th:text="${cliente.nome}">Escolha</option>
+                    <option value="" selected>Escolha</option>
+                    <option th:each="cliente : ${clientes}" th:value="${cliente.id}" th:text="${cliente.nome}"></option>
                 </select>
+                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('idCliente')}" th:errors="*{idCliente}"></div>
             </div>
             <div class="form-group col-md-6">
                 <label>Data</label>
                 <input type="date" class="form-control" th:field="*{dataPedido}">
+                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('dataPedido')}" th:errors="*{dataPedido}"></div>
             </div>
             <div class="form-group col-md-2">
                 <label>Valor</label>
                 <input type="text" class="form-control" th:field="*{totalPedido}">
+                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('totalPedido')}" th:errors="*{totalPedido}"></div>
             </div>
         </div>
         <div class="form-group">
@@ -79,6 +84,7 @@
                     <label class="form-check-label" th:text="${produto.nome}"></label>
                 </div>
             </div>
+            <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('idProdutos')}" th:errors="*{idProdutos}"></div>
         </div>
         <button type="submit" class="btn btn-primary">Salvar</button>
     </form>

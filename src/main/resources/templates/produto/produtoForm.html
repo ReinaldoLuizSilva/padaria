@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <title>cadastro produto</title>
+    <title>Formulario do produto</title>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -47,6 +47,7 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" href="/produto/novo">Novo</a>
                         <a class="dropdown-item" href="/produto/listar">Lista</a>
+                        <a class="dropdown-item" href="/produto/nome">Nome</a>
                     </div>
                 </li>
             </ul>
@@ -58,24 +59,24 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label>Nome</label>
-                    <span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span><br/>
                     <input type="text" class="form-control" th:field="*{nome}" placeholder="Nome">
+                    <span class="text-danger" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
                 </div>
                 <div class="form-group col-md-6">
                     <label>Preço</label>
-                    <span th:if="${#fields.hasErrors('preco')}" th:errors="*{preco}"></span><br/>
                     <input type="text" class="form-control" th:field="*{preco}" placeholder="Preço">
+                    <span class="text-danger" th:if="${#fields.hasErrors('preco')}" th:errors="*{preco}"></span>
                 </div>
             </div>
             <div class="form-group">
                 <label>Quantidade</label>
-                <span th:if="${#fields.hasErrors('quantidade')}" th:errors="*{quantidade}"></span><br/>
                 <input type="text" class="form-control" th:field="*{quantidade}" placeholder="Quandidade">
+                <span class="text-danger" th:if="${#fields.hasErrors('quantidade')}" th:errors="*{quantidade}"></span>
             </div>
             <div class="form-group">
                 <label>Validade</label>
-                <span th:if="${#fields.hasErrors('validade')}" th:errors="*{validade}"></span><br/>
                 <input type="date" class="form-control" th:field="*{validade}">
+                <span class="text-danger" th:if="${#fields.hasErrors('validade')}" th:errors="*{validade}"></span>
             </div>
             <button type="submit" class="btn btn-primary">Entrar</button>
         </form>

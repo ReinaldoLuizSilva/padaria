@@ -42,4 +42,8 @@ public class ProdutoService {
     public void deletar(@PathVariable("id") int id){
         produtoRepository.deleteById(id);
     }
+
+    public Iterable<Produto> buscarPorNome(String nome){
+        return produtoRepository.findByNome(nome);
+    }
 }

@@ -41,7 +41,8 @@ public class ProdutoController {
     }
 
     @PostMapping("/editar")
-    public String editarSalvar(ProdutoDTO produto){
+    public String editarSalvar(@Valid @ModelAttribute("produto") ProdutoDTO produto, BindingResult bindingResult){
+        if(bindingResult.hasErrors()) return "/produto/produtoEditar";
         produtoService.editarSalvar(produto);
         return "redirect:/produto/listar";
     }
@@ -50,5 +51,15 @@ public class ProdutoController {
     public String deletar(@PathVariable("id") int id){
         produtoService.deletar(id);
         return "redirect:/produto/listar";
+    }
+
+    @GetMapping("/nome")
+    public String buscarPorNome(@RequestParam(value = "nome", required = false) String nome, Model model){
+        if (nome == null || nome.isEmpty()) {
+            model.addAttribute("produtos", produtoService.buscarTodosProdutos());
+        } else {
+            model.addAttribute("produtos", produtoService.buscarPorNome(nome));
+        }
+        return "/produto/produtoNome";
     }
 }

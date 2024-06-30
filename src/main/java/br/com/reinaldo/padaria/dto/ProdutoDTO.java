@@ -5,7 +5,7 @@ import jakarta.validation.constraints.*;
 import java.time.LocalDate;
 
 public record ProdutoDTO(Integer id,
-                         @Size(min = 5, max = 40, message = "O nome deve ter entre 5 e 40 caracteres")
+                         @Size(min = 3, max = 40, message = "O nome deve ter entre 3 e 40 caracteres")
                          String nome,
                          @NotNull(message = "O preço é obrigatório")
                          @DecimalMin(value = "0.0", inclusive = false, message = "O preço deve ser maior que zero")

@@ -8,9 +8,11 @@ import br.com.reinaldo.padaria.entities.Produto;
 import br.com.reinaldo.padaria.services.ClienteService;
 import br.com.reinaldo.padaria.services.PedidoService;
 import br.com.reinaldo.padaria.services.ProdutoService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
@@ -27,9 +29,9 @@ public class PedidoController {
     @GetMapping("/novo")
     public String pedidoForm(@ModelAttribute("pedido") PedidoDTO pedido, Model model) {
         Iterable<Cliente> clientes = clienteService.buscarTodosClientes();
-        Iterable<Produto> produtos = produtoService.buscarTodosProdutos(); // Adicione esta linha
+        Iterable<Produto> produtos = produtoService.buscarTodosProdutos();
         model.addAttribute("clientes", clientes);
-        model.addAttribute("produtos", produtos); // Adicione esta linha
+        model.addAttribute("produtos", produtos);
         return "/pedido/pedidoForm";
     }
 
@@ -40,7 +42,14 @@ public class PedidoController {
     }
 
     @PostMapping("/novo")
-    public String novoSalvar(@ModelAttribute("pedido") PedidoDTO pedido){
+    public String novoSalvar(@Valid @ModelAttribute("pedido") PedidoDTO pedido, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            Iterable<Cliente> clientes = clienteService.buscarTodosClientes();
+            Iterable<Produto> produtos = produtoService.buscarTodosProdutos();
+            model.addAttribute("clientes", clientes);
+            model.addAttribute("produtos", produtos);
+            return "/pedido/pedidoForm";
+        }
         pedidoService.salvarPedido(pedido);
         return "redirect:/pedido/listar";
     }
@@ -57,7 +66,14 @@ public class PedidoController {
     }
 
     @PostMapping("/editar/{id}")
-    public String editarSalvar(@PathVariable("id") int id, @ModelAttribute("pedido") PedidoDTO pedidoDTO) {
+    public String editarSalvar(@PathVariable("id") int id, @Valid @ModelAttribute("pedido") PedidoDTO pedidoDTO, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            Iterable<Cliente> clientes = clienteService.buscarTodosClientes();
+            Iterable<Produto> produtos = produtoService.buscarTodosProdutos();
+            model.addAttribute("clientes", clientes);
+            model.addAttribute("produtos", produtos);
+            return "pedido/pedidoEditar";
+        }
         pedidoDTO = new PedidoDTO(id, pedidoDTO.totalPedido(), pedidoDTO.dataPedido(), pedidoDTO.idCliente(), pedidoDTO.idProdutos());
         pedidoService.editarSalvar(pedidoDTO);
         return "redirect:/pedido/listar";
