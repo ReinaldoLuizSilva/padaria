@@ -1,6 +1,7 @@
 package br.com.reinaldo.padaria.controllers;
 
 import br.com.reinaldo.padaria.dto.ClienteDTO;
+import br.com.reinaldo.padaria.entities.Cliente;
 import br.com.reinaldo.padaria.services.ClienteService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,18 +41,12 @@ public class ClienteController {
     }
 
     @PostMapping("/editar")
-    public String editarSalvar(@Valid @ModelAttribute("cliente") ClienteDTO cliente,
-                               BindingResult bindingResult,
-                               Model model,
-                               RedirectAttributes redirectAttributes) {
-
+    public String editarSalvar(@Valid @ModelAttribute("cliente") ClienteDTO cliente, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("cliente", cliente);
             return "cliente/clienteEditar";
         }
         clienteService.editarSalvar(cliente);
-        redirectAttributes.addFlashAttribute("mensagem", "Cliente editado com sucesso!");
-
         return "redirect:/cliente/listar";
     }
 
@@ -59,5 +54,15 @@ public class ClienteController {
     public String deletar(@PathVariable("id") int id){
         clienteService.deletar(id);
         return "redirect:/cliente/listar";
+    }
+
+    @GetMapping("/telefone")
+    public String buscarPorTelefone(@RequestParam(value = "telefone", required = false) String telefone, Model model){
+        if (telefone == null || telefone.isEmpty()) {
+            model.addAttribute("clientes", clienteService.buscarTodosClientes());
+        } else {
+            model.addAttribute("clientes", clienteService.buscarPorTelefone(telefone));
+        }
+        return "/cliente/clienteTelefone";
     }
 }

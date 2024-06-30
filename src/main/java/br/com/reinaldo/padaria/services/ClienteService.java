@@ -48,4 +48,7 @@ public class ClienteService {
         return clienteRepository.findById(id);
     }
 
+    public Iterable<Cliente> buscarPorTelefone(String telefone) {
+        return clienteRepository.findByTelefone(telefone);
+    }
 }
