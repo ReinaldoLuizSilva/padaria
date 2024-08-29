@@ -2,6 +2,7 @@ package br.com.reinaldo.padaria.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
+import org.springframework.http.converter.json.GsonBuilderUtils;
 
 import java.util.List;
 
@@ -17,6 +18,7 @@ public class Cliente {
     @Column(name = "nome")
     private String nome;
 
+    @Size(min = 3, max = 40, message = "O nome deve ter entre 3 e 40 caracteres")
     @Column(name = "telefone")
     private String telefone;
 
