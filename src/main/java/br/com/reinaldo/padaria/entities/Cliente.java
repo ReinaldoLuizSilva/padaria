@@ -1,6 +1,7 @@
 package br.com.reinaldo.padaria.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
 
 import java.util.List;
 
@@ -12,6 +13,7 @@ public class Cliente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Size(min = 3, max = 40, message = "O nome deve ter entre 3 e 40 caracteres")
     @Column(name = "nome")
     private String nome;
 
